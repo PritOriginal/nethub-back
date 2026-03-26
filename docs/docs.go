@@ -188,6 +188,12 @@ const docTemplate = `{
                             "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any"
                         }
                     },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any"
+                        }
+                    },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {

@@ -171,6 +171,7 @@ func (h *handler) GetDeviceById() gin.HandlerFunc {
 //	@Param			request	body		deviceshandler.UpdateDeviceRequest	true	"device params"
 //	@Success		200		{object}	responses.Response[deviceshandler.UpdateDeviceResponse]
 //	@Failure		400		{object}	responses.Response[any]
+//	@Failure		404		{object}	responses.Response[any]
 //	@Failure		500		{object}	responses.Response[any]
 //	@Router			/devices/{id} [put]
 func (h *handler) UpdateDevice() gin.HandlerFunc {
