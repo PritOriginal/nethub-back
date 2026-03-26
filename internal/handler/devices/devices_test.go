@@ -274,6 +274,18 @@ func (suite *DevicesSuite) TestUpdateDevice() {
 			statusCode:      400,
 		},
 		{
+			name: "Err404",
+			id:   "1",
+			req: deviceshandler.UpdateDeviceRequest{
+				Hostname: "myhost",
+				IP:       "0.0.0.0",
+				Location: "location",
+				IsActive: true,
+			},
+			errUpdateDevice: service.ErrNotFound,
+			statusCode:      404,
+		},
+		{
 			name: "Err500",
 			id:   "1",
 			req: deviceshandler.UpdateDeviceRequest{
