@@ -14,6 +14,10 @@ import (
 func GetRouter(log *slog.Logger, env logger.Environment) *gin.Engine {
 	r := gin.New()
 
+	if env == logger.Prod {
+		gin.SetMode(gin.ReleaseMode)
+	}
+
 	if env == logger.Local {
 		r.Use(gin.Logger())
 	} else {
