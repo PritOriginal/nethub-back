@@ -197,8 +197,13 @@ func (h *handler) UpdateDevice() gin.HandlerFunc {
 			IsActive: req.IsActive,
 		})
 		if err != nil {
-			h.log.Error("error update device", logger.Err(err))
-			responses.Internal(ctx, "error update device")
+			if errors.Is(err, service.ErrNotFound) {
+				h.log.Debug("device not found", slog.Int("id", id))
+				responses.Fail(ctx, http.StatusNotFound, "device not found")
+			} else {
+				h.log.Error("error update device", logger.Err(err))
+				responses.Internal(ctx, "error update device")
+			}
 			return
 		}
 
