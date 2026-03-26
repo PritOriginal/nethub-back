@@ -73,7 +73,11 @@ func (s *Service) UpdateDevice(ctx context.Context, device models.Device) (model
 
 	updatedDevice, err := s.store.UpdateDevice(ctx, device)
 	if err != nil {
-		return updatedDevice, fmt.Errorf("%s: %w", op, err)
+		if errors.Is(err, storage.ErrNotFound) {
+			return updatedDevice, service.ErrNotFound
+		} else {
+			return updatedDevice, fmt.Errorf("%s: %w", op, err)
+		}
 	}
 
 	return updatedDevice, nil
