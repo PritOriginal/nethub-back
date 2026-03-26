@@ -1,0 +1,441 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Это документация REST сервиса для тестового задания компании Нетхаб.",
+        "title": "Нетхаб REST API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "paths": {
+        "/devices": {
+            "get": {
+                "description": "Returns a list of devices using filtering",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "devices"
+                ],
+                "summary": "Returns a list of devices",
+                "parameters": [
+                    {
+                        "type": "boolean",
+                        "description": "filter by is_active",
+                        "name": "is_active",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "filter by hostname",
+                        "name": "search",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-internal_handler_devices_GetDevicesResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Add new device",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "devices"
+                ],
+                "summary": "Add new device",
+                "parameters": [
+                    {
+                        "description": "device params",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/internal_handler_devices.AddDeviceRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-internal_handler_devices_AddDeviceResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/devices/{id}": {
+            "get": {
+                "description": "Returns the device by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "devices"
+                ],
+                "summary": "Returns the device by ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "device id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-internal_handler_devices_GetDeviceByIdResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update the device by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "devices"
+                ],
+                "summary": "Update the device",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "device id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "device params",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/internal_handler_devices.UpdateDeviceRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-internal_handler_devices_UpdateDeviceResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete the device by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "devices"
+                ],
+                "summary": "Delete the device",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "device id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-internal_handler_devices_DeleteDeviceResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "github_com_PritOriginal_nethub-back_internal_models.Device": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "hostname": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "ip": {
+                    "type": "string"
+                },
+                "is_active": {
+                    "type": "boolean"
+                },
+                "location": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_PritOriginal_nethub-back_pkg_responses.ErrorInfo": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_PritOriginal_nethub-back_pkg_responses.Response-any": {
+            "type": "object",
+            "properties": {
+                "data": {},
+                "error": {
+                    "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.ErrorInfo"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_PritOriginal_nethub-back_pkg_responses.Response-internal_handler_devices_AddDeviceResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/internal_handler_devices.AddDeviceResponse"
+                },
+                "error": {
+                    "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.ErrorInfo"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_PritOriginal_nethub-back_pkg_responses.Response-internal_handler_devices_DeleteDeviceResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/internal_handler_devices.DeleteDeviceResponse"
+                },
+                "error": {
+                    "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.ErrorInfo"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_PritOriginal_nethub-back_pkg_responses.Response-internal_handler_devices_GetDeviceByIdResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/internal_handler_devices.GetDeviceByIdResponse"
+                },
+                "error": {
+                    "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.ErrorInfo"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_PritOriginal_nethub-back_pkg_responses.Response-internal_handler_devices_GetDevicesResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/internal_handler_devices.GetDevicesResponse"
+                },
+                "error": {
+                    "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.ErrorInfo"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_PritOriginal_nethub-back_pkg_responses.Response-internal_handler_devices_UpdateDeviceResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/internal_handler_devices.UpdateDeviceResponse"
+                },
+                "error": {
+                    "$ref": "#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.ErrorInfo"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "internal_handler_devices.AddDeviceRequest": {
+            "type": "object",
+            "required": [
+                "hostname",
+                "ip",
+                "location"
+            ],
+            "properties": {
+                "hostname": {
+                    "type": "string"
+                },
+                "ip": {
+                    "type": "string"
+                },
+                "is_active": {
+                    "type": "boolean"
+                },
+                "location": {
+                    "type": "string"
+                }
+            }
+        },
+        "internal_handler_devices.AddDeviceResponse": {
+            "type": "object",
+            "properties": {
+                "device": {
+                    "$ref": "#/definitions/github_com_PritOriginal_nethub-back_internal_models.Device"
+                }
+            }
+        },
+        "internal_handler_devices.DeleteDeviceResponse": {
+            "type": "object"
+        },
+        "internal_handler_devices.GetDeviceByIdResponse": {
+            "type": "object",
+            "properties": {
+                "device": {
+                    "$ref": "#/definitions/github_com_PritOriginal_nethub-back_internal_models.Device"
+                }
+            }
+        },
+        "internal_handler_devices.GetDevicesResponse": {
+            "type": "object",
+            "properties": {
+                "devices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_PritOriginal_nethub-back_internal_models.Device"
+                    }
+                }
+            }
+        },
+        "internal_handler_devices.UpdateDeviceRequest": {
+            "type": "object",
+            "required": [
+                "hostname",
+                "ip",
+                "location"
+            ],
+            "properties": {
+                "hostname": {
+                    "type": "string"
+                },
+                "ip": {
+                    "type": "string"
+                },
+                "is_active": {
+                    "type": "boolean"
+                },
+                "location": {
+                    "type": "string"
+                }
+            }
+        },
+        "internal_handler_devices.UpdateDeviceResponse": {
+            "type": "object",
+            "properties": {
+                "device": {
+                    "$ref": "#/definitions/github_com_PritOriginal_nethub-back_internal_models.Device"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "description": "Operations with devices",
+            "name": "devices"
+        }
+    ]
+}

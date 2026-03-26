@@ -1,0 +1,288 @@
+definitions:
+  github_com_PritOriginal_nethub-back_internal_models.Device:
+    properties:
+      created_at:
+        type: string
+      hostname:
+        type: string
+      id:
+        type: integer
+      ip:
+        type: string
+      is_active:
+        type: boolean
+      location:
+        type: string
+    type: object
+  github_com_PritOriginal_nethub-back_pkg_responses.ErrorInfo:
+    properties:
+      message:
+        type: string
+    type: object
+  github_com_PritOriginal_nethub-back_pkg_responses.Response-any:
+    properties:
+      data: {}
+      error:
+        $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.ErrorInfo'
+      success:
+        type: boolean
+    type: object
+  github_com_PritOriginal_nethub-back_pkg_responses.Response-internal_handler_devices_AddDeviceResponse:
+    properties:
+      data:
+        $ref: '#/definitions/internal_handler_devices.AddDeviceResponse'
+      error:
+        $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.ErrorInfo'
+      success:
+        type: boolean
+    type: object
+  github_com_PritOriginal_nethub-back_pkg_responses.Response-internal_handler_devices_DeleteDeviceResponse:
+    properties:
+      data:
+        $ref: '#/definitions/internal_handler_devices.DeleteDeviceResponse'
+      error:
+        $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.ErrorInfo'
+      success:
+        type: boolean
+    type: object
+  github_com_PritOriginal_nethub-back_pkg_responses.Response-internal_handler_devices_GetDeviceByIdResponse:
+    properties:
+      data:
+        $ref: '#/definitions/internal_handler_devices.GetDeviceByIdResponse'
+      error:
+        $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.ErrorInfo'
+      success:
+        type: boolean
+    type: object
+  github_com_PritOriginal_nethub-back_pkg_responses.Response-internal_handler_devices_GetDevicesResponse:
+    properties:
+      data:
+        $ref: '#/definitions/internal_handler_devices.GetDevicesResponse'
+      error:
+        $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.ErrorInfo'
+      success:
+        type: boolean
+    type: object
+  github_com_PritOriginal_nethub-back_pkg_responses.Response-internal_handler_devices_UpdateDeviceResponse:
+    properties:
+      data:
+        $ref: '#/definitions/internal_handler_devices.UpdateDeviceResponse'
+      error:
+        $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.ErrorInfo'
+      success:
+        type: boolean
+    type: object
+  internal_handler_devices.AddDeviceRequest:
+    properties:
+      hostname:
+        type: string
+      ip:
+        type: string
+      is_active:
+        type: boolean
+      location:
+        type: string
+    required:
+    - hostname
+    - ip
+    - location
+    type: object
+  internal_handler_devices.AddDeviceResponse:
+    properties:
+      device:
+        $ref: '#/definitions/github_com_PritOriginal_nethub-back_internal_models.Device'
+    type: object
+  internal_handler_devices.DeleteDeviceResponse:
+    type: object
+  internal_handler_devices.GetDeviceByIdResponse:
+    properties:
+      device:
+        $ref: '#/definitions/github_com_PritOriginal_nethub-back_internal_models.Device'
+    type: object
+  internal_handler_devices.GetDevicesResponse:
+    properties:
+      devices:
+        items:
+          $ref: '#/definitions/github_com_PritOriginal_nethub-back_internal_models.Device'
+        type: array
+    type: object
+  internal_handler_devices.UpdateDeviceRequest:
+    properties:
+      hostname:
+        type: string
+      ip:
+        type: string
+      is_active:
+        type: boolean
+      location:
+        type: string
+    required:
+    - hostname
+    - ip
+    - location
+    type: object
+  internal_handler_devices.UpdateDeviceResponse:
+    properties:
+      device:
+        $ref: '#/definitions/github_com_PritOriginal_nethub-back_internal_models.Device'
+    type: object
+info:
+  contact: {}
+  description: Это документация REST сервиса для тестового задания компании Нетхаб.
+  title: Нетхаб REST API
+  version: "1.0"
+paths:
+  /devices:
+    get:
+      description: Returns a list of devices using filtering
+      parameters:
+      - description: filter by is_active
+        in: query
+        name: is_active
+        type: boolean
+      - description: filter by hostname
+        in: query
+        name: search
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-internal_handler_devices_GetDevicesResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any'
+      summary: Returns a list of devices
+      tags:
+      - devices
+    post:
+      description: Add new device
+      parameters:
+      - description: device params
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handler_devices.AddDeviceRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-internal_handler_devices_AddDeviceResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any'
+      summary: Add new device
+      tags:
+      - devices
+  /devices/{id}:
+    delete:
+      description: Delete the device by ID
+      parameters:
+      - description: device id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-internal_handler_devices_DeleteDeviceResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any'
+      summary: Delete the device
+      tags:
+      - devices
+    get:
+      description: Returns the device by ID
+      parameters:
+      - description: device id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-internal_handler_devices_GetDeviceByIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any'
+      summary: Returns the device by ID
+      tags:
+      - devices
+    put:
+      description: Update the device by ID
+      parameters:
+      - description: device id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: device params
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/internal_handler_devices.UpdateDeviceRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-internal_handler_devices_UpdateDeviceResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_PritOriginal_nethub-back_pkg_responses.Response-any'
+      summary: Update the device
+      tags:
+      - devices
+swagger: "2.0"
+tags:
+- description: Operations with devices
+  name: devices
