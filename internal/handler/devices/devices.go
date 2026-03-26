@@ -171,6 +171,7 @@ func (h *handler) GetDeviceById() gin.HandlerFunc {
 //	@Param			request	body		deviceshandler.UpdateDeviceRequest	true	"device params"
 //	@Success		200		{object}	responses.Response[deviceshandler.UpdateDeviceResponse]
 //	@Failure		400		{object}	responses.Response[any]
+//	@Failure		404		{object}	responses.Response[any]
 //	@Failure		500		{object}	responses.Response[any]
 //	@Router			/devices/{id} [put]
 func (h *handler) UpdateDevice() gin.HandlerFunc {
@@ -197,8 +198,13 @@ func (h *handler) UpdateDevice() gin.HandlerFunc {
 			IsActive: req.IsActive,
 		})
 		if err != nil {
-			h.log.Error("error update device", logger.Err(err))
-			responses.Internal(ctx, "error update device")
+			if errors.Is(err, service.ErrNotFound) {
+				h.log.Debug("device not found", slog.Int("id", id))
+				responses.Fail(ctx, http.StatusNotFound, "device not found")
+			} else {
+				h.log.Error("error update device", logger.Err(err))
+				responses.Internal(ctx, "error update device")
+			}
 			return
 		}
 

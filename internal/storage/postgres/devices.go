@@ -123,7 +123,7 @@ func (s *DevicesStorage) UpdateDevice(ctx context.Context, device models.Device)
 			SET 
 				hostname = :hostname, ip = :ip, location = :location, is_active = :is_active 
 			WHERE 
-				id = :id
+				is_deleted = false AND id = :id
 			RETURNING
 				id, hostname, ip, location, is_active, created_at 
 			`
@@ -133,7 +133,12 @@ func (s *DevicesStorage) UpdateDevice(ctx context.Context, device models.Device)
 	}
 
 	if err := stmt.GetContext(ctx, &updatedDevice, device); err != nil {
-		return updatedDevice, fmt.Errorf("%s: %w", op, err)
+		switch err {
+		case sql.ErrNoRows:
+			return updatedDevice, storage.ErrNotFound
+		default:
+			return updatedDevice, fmt.Errorf("%s: %w", op, err)
+		}
 	}
 
 	return updatedDevice, nil
