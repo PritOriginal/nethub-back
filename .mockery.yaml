@@ -1,0 +1,10 @@
+template: testify
+packages:
+  github.com/PritOriginal/nethub-back/internal/service:
+    config:
+      all: true
+      recursive: true
+  github.com/PritOriginal/nethub-back/internal/handler:
+    config:
+      all: true
+      recursive: true
