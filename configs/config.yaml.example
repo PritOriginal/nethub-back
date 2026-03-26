@@ -1,0 +1,14 @@
+env: local
+server:
+  host: 127.0.0.1
+  port: 3334
+  timeout:
+    read: 15s
+    write: 10s
+    idle: 5s
+db:
+  host: 127.0.0.1
+  port: 5432
+  username: postgres
+  password: postgres
+  name: nethub
