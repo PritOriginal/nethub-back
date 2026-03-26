@@ -2,7 +2,7 @@
 
 [![wakatime](https://wakatime.com/badge/user/b2a0c08d-61f2-4144-ba78-aab13a59cb9f/project/c78a72e5-c028-4c37-b598-9d3aac550a3c.svg)](https://wakatime.com/badge/user/b2a0c08d-61f2-4144-ba78-aab13a59cb9f/project/c78a72e5-c028-4c37-b598-9d3aac550a3c)
 
-В данном репозитории представлен REST-сервис управления сетевыми устройствамию. Данный сервис является частью тестового задания в компании [**Нетхаб**](https://nethub.ru/).
+В данном репозитории представлен REST-сервис управления сетевыми устройствами. Данный сервис является частью тестового задания в компании [**Нетхаб**](https://nethub.ru/).
 
 [nethub-front](https://github.com/PritOriginal/nethub-front) - Frontend репозиторий.
 
