@@ -11,7 +11,7 @@ import (
 
 type Config struct {
 	Env    logger.Environment `yaml:"env" env:"ENV" env-default:"local"`
-	Server ServerConfig       `yaml:"rest"`
+	Server ServerConfig       `yaml:"server"`
 	DB     DatabaseConfig     `yaml:"db"`
 }
 
