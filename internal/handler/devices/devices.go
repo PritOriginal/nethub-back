@@ -30,7 +30,7 @@ type handler struct {
 func Register(r *gin.Engine, log *slog.Logger, s DevicesService) {
 	handler := handler{log: log, s: s}
 
-	devices := r.Group("/devices")
+	devices := r.Group("/api/devices")
 	{
 		devices.POST("", handler.AddDevice())
 		devices.GET("", handler.GetDevices())

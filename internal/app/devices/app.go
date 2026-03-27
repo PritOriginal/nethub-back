@@ -34,6 +34,7 @@ func New(log *slog.Logger, cfg *config.Config) *App {
 	log.Info("PostgreSQL connected!")
 
 	r := handler.GetRouter(log, cfg.Env)
+	handler.SetSwagger(r, cfg)
 
 	devicesStorage := postgres.NewDeviceStorage(postgresDB.DB)
 	devicesService := devices.New(log, devicesStorage)

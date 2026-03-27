@@ -4,6 +4,7 @@ import (
 	"log/slog"
 
 	_ "github.com/PritOriginal/nethub-back/docs"
+	"github.com/PritOriginal/nethub-back/internal/config"
 	"github.com/PritOriginal/nethub-back/pkg/logger"
 	"github.com/gin-gonic/gin"
 	sloggin "github.com/samber/slog-gin"
@@ -26,7 +27,9 @@ func GetRouter(log *slog.Logger, env logger.Environment) *gin.Engine {
 
 	r.Use(gin.Recovery())
 
-	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-
 	return r
+}
+
+func SetSwagger(r *gin.Engine, cfg *config.Config) {
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 }

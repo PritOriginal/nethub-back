@@ -8,7 +8,7 @@
 
 [nethub.pritoriginal.ru](https://nethub.pritoriginal.ru/) - Frontend, который общается с данным сервисом. Развёрнут на VPS.
 
-[Swagger документация](https://nethub.pritoriginal.ru/api/swagger/index.html) - документация REST API , развёрнутая на VPS. Для локального просмотра `http://[host]:[port]/swagger/index.html`
+[Swagger документация](https://nethub.pritoriginal.ru/swagger/index.html) - документация REST API , развёрнутая на VPS. Для локального просмотра `http://[host]:[port]/swagger/index.html`
 
 ## Эндпоинты
 
@@ -110,7 +110,6 @@ make migrate-down-1
 ```bash
 make swag
 ```
-
 
 ## Примечание
 

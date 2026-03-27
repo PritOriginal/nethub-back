@@ -15,6 +15,8 @@ import (
 //	@version		1.0
 //	@description	Это документация REST сервиса для тестового задания компании Нетхаб.
 
+//	@BasePath	/api/
+
 //	@tag.name			devices
 //	@tag.description	Operations with devices
 

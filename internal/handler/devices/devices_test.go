@@ -102,7 +102,7 @@ func (suite *DevicesSuite) TestAddDevice() {
 				buf = bytes.NewBuffer([]byte(tt.rawReq))
 			}
 
-			req := httptest.NewRequest("POST", "/devices", buf)
+			req := httptest.NewRequest("POST", "/api/devices", buf)
 
 			suite.r.ServeHTTP(w, req)
 
@@ -170,7 +170,7 @@ func (suite *DevicesSuite) TestGetDevices() {
 			}
 
 			w := httptest.NewRecorder()
-			req := httptest.NewRequest("GET", "/devices"+tt.query, nil)
+			req := httptest.NewRequest("GET", "/api/devices"+tt.query, nil)
 			suite.r.ServeHTTP(w, req)
 
 			suite.Equal(tt.statusCode, w.Code)
@@ -218,7 +218,7 @@ func (suite *DevicesSuite) TestGetDeviceById() {
 			}
 
 			w := httptest.NewRecorder()
-			req := httptest.NewRequest("GET", "/devices/"+tt.id, nil)
+			req := httptest.NewRequest("GET", "/api/devices/"+tt.id, nil)
 			suite.r.ServeHTTP(w, req)
 
 			suite.Equal(tt.statusCode, w.Code)
@@ -316,7 +316,7 @@ func (suite *DevicesSuite) TestUpdateDevice() {
 				buf = bytes.NewBuffer([]byte(tt.rawReq))
 			}
 
-			req := httptest.NewRequest("PUT", "/devices/"+tt.id, buf)
+			req := httptest.NewRequest("PUT", "/api/devices/"+tt.id, buf)
 			suite.r.ServeHTTP(w, req)
 
 			suite.Equal(tt.statusCode, w.Code)
@@ -364,7 +364,7 @@ func (suite *DevicesSuite) TestDeleteDevice() {
 			}
 
 			w := httptest.NewRecorder()
-			req := httptest.NewRequest("DELETE", "/devices/"+tt.id, nil)
+			req := httptest.NewRequest("DELETE", "/api/devices/"+tt.id, nil)
 			suite.r.ServeHTTP(w, req)
 
 			suite.Equal(tt.statusCode, w.Code)
