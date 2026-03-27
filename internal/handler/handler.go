@@ -3,7 +3,6 @@ package handler
 import (
 	"log/slog"
 
-	"github.com/PritOriginal/nethub-back/docs"
 	_ "github.com/PritOriginal/nethub-back/docs"
 	"github.com/PritOriginal/nethub-back/internal/config"
 	"github.com/PritOriginal/nethub-back/pkg/logger"
@@ -33,5 +32,4 @@ func GetRouter(log *slog.Logger, env logger.Environment) *gin.Engine {
 
 func SetSwagger(r *gin.Engine, cfg *config.Config) {
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-	docs.SwaggerInfo.BasePath = "/api/"
 }
