@@ -458,7 +458,7 @@ const docTemplate = `{
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
 	Host:             "",
-	BasePath:         "",
+	BasePath:         "/api/",
 	Schemes:          []string{},
 	Title:            "Нетхаб REST API",
 	Description:      "Это документация REST сервиса для тестового задания компании Нетхаб.",

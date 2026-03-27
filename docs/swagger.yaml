@@ -1,3 +1,4 @@
+basePath: /api/
 definitions:
   github_com_PritOriginal_nethub-back_internal_models.Device:
     properties:
