@@ -17,6 +17,9 @@ test-cover:
 	rm cover.test.tmp 
 	go tool cover -func cover.test 
 
+test-functional:
+	go test -tags=functional ./tests -count 1
+
 migrate:
 	migrate create -ext=sql -dir=./migrations -seq ${NAME_MIGRATION}     
 migrate-up:
